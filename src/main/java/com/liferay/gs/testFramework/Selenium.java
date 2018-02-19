@@ -3,6 +3,7 @@ package com.liferay.gs.testFramework;
 import java.io.File;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.HashMap;
 
 import org.openqa.selenium.Capabilities;
 import org.openqa.selenium.WebDriver;
@@ -12,6 +13,7 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.phantomjs.PhantomJSDriver;
 import org.openqa.selenium.phantomjs.PhantomJSDriverService;
+import org.openqa.selenium.remote.CapabilityType;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
 
@@ -24,6 +26,7 @@ public final class Selenium {
 	private static String PhantomJS_Path = SeleniumReadPropertyKeys.getPhantomJSPath();
 	private static String GeckoDriver_Path = SeleniumReadPropertyKeys.getGeckoDriverPath();
 	private static String ChromeDriver_Path = SeleniumReadPropertyKeys.getChromeDriverPath();
+	private static String DownloadSaveFilePath = SeleniumReadPropertyKeys.getDownloadSaveFilePath();
 	private static String configurationErrorMessage = null;
 
 	public static WebDriver getDriver() {
@@ -98,7 +101,21 @@ public final class Selenium {
 	private static void configureDefaultGC() {
 		if (chromeDriverWasConfigured() == true) {
 			System.setProperty("webdriver.chrome.driver", ChromeDriver_Path);
-			driver = new ChromeDriver();
+
+			if (DownloadSaveFilePath.isEmpty()) {
+				driver = new ChromeDriver();
+			} else {
+				HashMap<String, Object> chromePrefs = new HashMap<String, Object>();
+				chromePrefs.put("profile.default_content_settings.popups", 0);
+				chromePrefs.put("download.default_directory", DownloadSaveFilePath);
+				ChromeOptions options = new ChromeOptions();
+				options.setExperimentalOption("prefs", chromePrefs);
+				DesiredCapabilities cap = DesiredCapabilities.chrome();
+				cap.setCapability(CapabilityType.ACCEPT_SSL_CERTS, true);
+				cap.setCapability(ChromeOptions.CAPABILITY, options);
+
+				driver = new ChromeDriver(cap);
+			}
 		} else {
 			System.out.println(configurationErrorMessage);
 		}

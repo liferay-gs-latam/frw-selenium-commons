@@ -1,8 +1,6 @@
 package com.liferay.gs.testFramework;
 
 import java.io.File;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 
 import org.openqa.selenium.WebDriver;
 
@@ -83,6 +81,11 @@ public class SeleniumReadPropertyKeys {
 		return GECKODRIVER_PATH;
 	}
 
+	public static String getDownloadSaveFilePath() {
+		URL_LOGOUT = ReadProperties.getConfigigurationOfPropertiesFile("DownloadSaveFilePath");
+		return URL_LOGOUT;
+	}
+	
 	public static String getChromeDriverPath() {
 		String localPropertiesFile;
 		if (System.getProperty("os.name").toLowerCase().contains("windows")) {
