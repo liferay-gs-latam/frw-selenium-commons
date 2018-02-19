@@ -82,7 +82,7 @@ public class SeleniumReadPropertyKeys {
 	}
 
 	public static String getDownloadSaveFilePath() {
-		URL_LOGOUT = ReadProperties.getConfigigurationOfPropertiesFile("DownloadSaveFilePath");
+		URL_LOGOUT = ReadProperties.getConfigigurationOfPropertiesFile("DownloadSaveFilePath", "default");
 		return URL_LOGOUT;
 	}
 	

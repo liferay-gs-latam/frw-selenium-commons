@@ -101,8 +101,8 @@ public final class Selenium {
 	private static void configureDefaultGC() {
 		if (chromeDriverWasConfigured() == true) {
 			System.setProperty("webdriver.chrome.driver", ChromeDriver_Path);
-
-			if (DownloadSaveFilePath.isEmpty()) {
+			
+			if (DownloadSaveFilePath == "default") {
 				driver = new ChromeDriver();
 			} else {
 				HashMap<String, Object> chromePrefs = new HashMap<String, Object>();
