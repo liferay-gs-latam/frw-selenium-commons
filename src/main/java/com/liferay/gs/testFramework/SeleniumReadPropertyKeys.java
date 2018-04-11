@@ -20,6 +20,8 @@ public class SeleniumReadPropertyKeys {
 	private static String CHROMEDRIVER_PATH = null;
 	private static String ATTACH_FILE_PATH = null;
 	private static String DEFAULT_PROPERTIES_FILE_PATH = null;
+	private static String DEFAULT_USERNAME = null;
+	private static String DEFAULT_PASSWORD = null;
 
 	public static int getTimeOut() {
 		TIME_OUT = ReadProperties.getConfigigurationOfPropertiesFile("time-out", "10");
@@ -41,6 +43,17 @@ public class SeleniumReadPropertyKeys {
 		URL = ReadProperties.getConfigigurationOfPropertiesFile("environment", "http://localhost:8080");
 		return URL;
 	}
+	
+	public static String getDefaultUsername() {
+		DEFAULT_USERNAME = ReadProperties.getConfigigurationOfPropertiesFile("username", "test@liferay.com");
+		return DEFAULT_USERNAME;
+	}
+
+	public static String getDefaultPassword() {
+		DEFAULT_PASSWORD = ReadProperties.getConfigigurationOfPropertiesFile("password", "test");
+		return DEFAULT_PASSWORD;
+	}
+
 
 	public static String getLinkToLogOut() {
 		URL_LOGOUT = ReadProperties.getConfigigurationOfPropertiesFile("linkToLogOut", "/c/portal/logout");
@@ -119,8 +132,6 @@ public class SeleniumReadPropertyKeys {
 	}
 
 	private static String getProjectPath() {
-		// Path whereIam = Paths.get(ConfigurationOS.class.getResource("/").getFile());
-		// String projectPath = whereIam.getParent().toString();
 		String projectPath = System.getProperty("user.dir");
 		return projectPath;
 	}

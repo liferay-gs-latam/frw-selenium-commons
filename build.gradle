@@ -27,7 +27,7 @@ description = """Liferay GS Selenium Commons Framework"""
 // Version X.Y.Z = X, When changing the API
 // Version X.Y.Z = Y, When adding features while maintaining compatibility
 // Version X.Y.Z = Z, When to fix failures while maintaining compatibility
-version = '2.2.1'
+version = '2.2.2'
 group = 'com.liferay.gs'
 // custom tasks for creating source/javadoc jars
 task sourcesJar(type: Jar, dependsOn: classes) {
