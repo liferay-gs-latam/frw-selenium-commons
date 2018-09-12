@@ -34,7 +34,7 @@ public class SeleniumReadPropertyKeys {
 	}
 
 	public static String getDefaultPlatformName() {
-		PLATFORM_NAME = ReadProperties.getConfigigurationOfPropertiesFile("browser");
+		PLATFORM_NAME = ReadProperties.getConfigigurationOfPropertiesFile("browser", "defaultGCHeadless");
 		return PLATFORM_NAME;
 	}
 	
