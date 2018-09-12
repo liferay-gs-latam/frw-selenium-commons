@@ -11,8 +11,6 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
-import org.openqa.selenium.phantomjs.PhantomJSDriver;
-import org.openqa.selenium.phantomjs.PhantomJSDriverService;
 import org.openqa.selenium.remote.CapabilityType;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
@@ -23,7 +21,6 @@ public final class Selenium {
 
 	private static String SeleniumGridMachine = SeleniumReadPropertyKeys.getSeleniumGridMachine();
 	private static String SeleniumGridDocker = SeleniumReadPropertyKeys.getSeleniumGridDocker();
-	private static String PhantomJS_Path = SeleniumReadPropertyKeys.getPhantomJSPath();
 	private static String GeckoDriver_Path = SeleniumReadPropertyKeys.getGeckoDriverPath();
 	private static String ChromeDriver_Path = SeleniumReadPropertyKeys.getChromeDriverPath();
 	private static String DownloadSaveFilePath = SeleniumReadPropertyKeys.getDownloadSaveFilePath();
@@ -46,7 +43,7 @@ public final class Selenium {
 		try {
 			DesiredCapabilities capabilities = new DesiredCapabilities();
 
-			switch (SeleniumReadPropertyKeys.getPlatformName()) {
+			switch (SeleniumReadPropertyKeys.getDefaultPlatformName()) {
 			case "ie":
 				configureIE(capabilities);
 				break;
@@ -65,10 +62,6 @@ public final class Selenium {
 
 			case "firefox":
 				configureFirefox(capabilities);
-				break;
-
-			case "phantomjs":
-				configurePhantomJS(capabilities);
 				break;
 
 			case "defaultGCHeadless":
@@ -141,16 +134,6 @@ public final class Selenium {
 		driver = new RemoteWebDriver(new URL(SeleniumGridDocker), chromeCapabilities);
 	}
 
-	private static void configurePhantomJS(DesiredCapabilities capabilities) throws MalformedURLException {
-		if (phantomJSWasConfigured() == true) {
-			capabilities.setBrowserName("PhantomJS");
-			capabilities.setCapability(PhantomJSDriverService.PHANTOMJS_EXECUTABLE_PATH_PROPERTY, PhantomJS_Path);
-			driver = new PhantomJSDriver(capabilities);
-		} else {
-			System.out.println(configurationErrorMessage);
-		}
-	}
-
 	private static void configureDefaultGCHeadless() {
 		if (chromeDriverWasConfigured() == true) {
 			ChromeOptions chromeOptions = new ChromeOptions();
@@ -186,18 +169,6 @@ public final class Selenium {
 			return true;
 		} else {
 			configurationErrorMessage = "The chromedriver should be configured in '" + ChromeDriver_Path
-					+ "' according the project wiki.";
-			return false;
-		}
-	}
-
-	private static boolean phantomJSWasConfigured() {
-		File phantomJSDriverFile = new File(PhantomJS_Path);
-		if (phantomJSDriverFile.exists() == true && phantomJSDriverFile.canExecute() == true) {
-			configurationErrorMessage = "The phantomJS was configured correctly";
-			return true;
-		} else {
-			configurationErrorMessage = "The phantomJS should be configured in '" + PhantomJS_Path
 					+ "' according the project wiki.";
 			return false;
 		}

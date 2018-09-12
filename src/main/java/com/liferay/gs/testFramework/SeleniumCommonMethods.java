@@ -42,7 +42,7 @@ public class SeleniumCommonMethods {
 
 		Date data = new Date();
 
-		if (SeleniumReadPropertyKeys.getPlatformName().contains("default")) {
+		if (SeleniumReadPropertyKeys.getDefaultPlatformName().contains("default")) {
 			try {
 				Thread.sleep(1000);
 				new File("reports/screenshots/").mkdirs();
@@ -62,7 +62,7 @@ public class SeleniumCommonMethods {
 	}
 
 	public static String getPathOfImageFile() {
-		if (SeleniumReadPropertyKeys.getPlatformName().contains("default")) {
+		if (SeleniumReadPropertyKeys.getDefaultPlatformName().contains("default")) {
 			Path whereIam = Paths.get(ConfigurationOS.class.getResource("/").getFile());
 			Path rootRepository = whereIam.getParent();
 			return rootRepository + "/reports/screenshots/" + imagePath;
@@ -78,7 +78,7 @@ public class SeleniumCommonMethods {
 	 */
 	public static void removeScreenshots() {
 
-		if (SeleniumReadPropertyKeys.getPlatformName().contains("default")) {
+		if (SeleniumReadPropertyKeys.getDefaultPlatformName().contains("default")) {
 			Path whereIam = Paths.get(ConfigurationOS.class.getResource("/").getFile());
 			Path rootRepository = whereIam.getParent();
 			imagePath = rootRepository + "/reports/screenshots/";

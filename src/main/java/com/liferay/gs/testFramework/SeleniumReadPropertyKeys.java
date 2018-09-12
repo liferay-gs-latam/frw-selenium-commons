@@ -15,7 +15,6 @@ public class SeleniumReadPropertyKeys {
 	private static String URL_LOGOUT = null;
 	private static String SELENIUM_GRID_IP = null;
 	private static String SELENIUM_GRID_DOCKER_IP = null;
-	private static String PHANTOMJS_PATH = null;
 	private static String GECKODRIVER_PATH = null;
 	private static String CHROMEDRIVER_PATH = null;
 	private static String ATTACH_FILE_PATH = null;
@@ -34,11 +33,11 @@ public class SeleniumReadPropertyKeys {
 		return ATTACH_FILE_PATH;
 	}
 
-	public static String getPlatformName() {
+	public static String getDefaultPlatformName() {
 		PLATFORM_NAME = ReadProperties.getConfigigurationOfPropertiesFile("browser");
 		return PLATFORM_NAME;
 	}
-
+	
 	public static String getUrlToHome() {
 		URL = ReadProperties.getConfigigurationOfPropertiesFile("environment", "http://localhost:8080");
 		return URL;
@@ -68,11 +67,6 @@ public class SeleniumReadPropertyKeys {
 	public static String getSeleniumGridDocker() {
 		SELENIUM_GRID_DOCKER_IP = ReadProperties.getConfigigurationOfPropertiesFile("SeleniumGridDockerPath");
 		return SELENIUM_GRID_DOCKER_IP;
-	}
-
-	public static String getPhantomJSPath() {
-		PHANTOMJS_PATH = ConfigurationOS.getString("PhantomJS_Path");
-		return PHANTOMJS_PATH;
 	}
 
 	public static String getGeckoDriverPath() {
