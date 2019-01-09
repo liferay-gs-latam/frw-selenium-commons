@@ -11,6 +11,9 @@ import javax.imageio.ImageIO;
 import org.junit.rules.TestWatcher;
 import org.junit.runner.Description;
 
+/**
+ * @author Manoel Cyreno
+ */
 public class ScreenshotRule extends TestWatcher {
 
 	private static String screenshotPicture = null;
