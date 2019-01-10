@@ -10,6 +10,7 @@ import org.junit.rules.Timeout;
 import org.junit.runner.Description;
 import org.openqa.selenium.WebDriver;
 
+import com.liferay.gs.testFramework.core.SeleniumReadPropertyKeys;
 import com.liferay.gs.testFramework.driver.WebDriverManager;
 import com.liferay.gs.testFramework.errorHandling.RetryTestExecution;
 import com.liferay.gs.testFramework.errorHandling.ScreenshotTaker;
@@ -23,7 +24,7 @@ public abstract class FunctionalTest {
 	public FunctionalTest() {
 		_webDriver = _webDriverManager.get();
 
-		retry = new RetryTestExecution(_webDriver, 3);
+		retry = new RetryTestExecution(_webDriver, SeleniumReadPropertyKeys.getNumberOfFailedTestsRetryTestExecution());
 	}
 
 	@After

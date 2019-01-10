@@ -20,9 +20,9 @@ public class ConcurrentSuite extends Suite {
 		setScheduler(new MultipleThreadPoolScheduler());
 	}
 
-	private static final int _NUMBER_OF_THREADS = 4;
+	private final int _NUMBER_OF_THREADS = SeleniumReadPropertyKeys.getNumberOfBrowserInParallel();
 
-	private static class MultipleThreadPoolScheduler implements RunnerScheduler {
+	private class MultipleThreadPoolScheduler implements RunnerScheduler {
 		public MultipleThreadPoolScheduler() {
 			String threads = System.getProperty("concurrentSuite.numberOfThreads", Integer.toString(_NUMBER_OF_THREADS));
 

@@ -8,12 +8,16 @@ import java.io.File;
  */
 public class SeleniumReadPropertyKeys {
 
-	public static int getTimeOut() {
-		return Integer.parseInt(ReadProperties.getConfigurationOfPropertiesFile("time-out", "10"));
+	public static int getNumberOfBrowserInParallel() {
+		return Integer.parseInt(ReadProperties.getConfigurationOfPropertiesFile("number-of-browser-in-parallel", "4"));
+	}
+	
+	public static int getNumberOfFailedTestsRetryTestExecution() {
+		return Integer.parseInt(ReadProperties.getConfigurationOfPropertiesFile("number-of-failed-tests-retry-test-execution", "3"));
 	}
 
-	public static String getAttachFilePath() {
-		return ReadProperties.getConfigurationOfPropertiesFile("PathWithAttachFiles");
+	public static int getTimeOut() {
+		return Integer.parseInt(ReadProperties.getConfigurationOfPropertiesFile("time-out", "10"));
 	}
 
 	public static String getDefaultPlatformName() {
@@ -33,15 +37,11 @@ public class SeleniumReadPropertyKeys {
 	}
 
 	public static String getLinkToLogOut() {
-		return ReadProperties.getConfigurationOfPropertiesFile("linkToLogOut", "/c/portal/logout");
+		return ReadProperties.getConfigurationOfPropertiesFile("link-to-logout", "/c/portal/logout");
 	}
 
-	public static String getSeleniumGridMachine() {
-		return ReadProperties.getConfigurationOfPropertiesFile("SeleniumGridMachine");
-	}
-
-	public static String getSeleniumGridDocker() {
-		return ReadProperties.getConfigurationOfPropertiesFile("SeleniumGridDockerPath");
+	public static String getDownloadSaveFilePath() {
+		return ReadProperties.getConfigurationOfPropertiesFile("download-save-file-path", "default");
 	}
 
 	public static String getGeckoDriverPath() {
@@ -63,10 +63,6 @@ public class SeleniumReadPropertyKeys {
 		}
 
 		return GECKODRIVER_PATH;
-	}
-
-	public static String getDownloadSaveFilePath() {
-		return ReadProperties.getConfigurationOfPropertiesFile("DownloadSaveFilePath", "default");
 	}
 
 	public static String getChromeDriverPath() {

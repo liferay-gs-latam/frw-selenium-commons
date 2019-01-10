@@ -10,7 +10,7 @@ import java.util.Date;
  */
 public class SeleniumDateMethods {
 
-	public static String dateFutureYear() {
+	public String dateFutureYear() {
 		Calendar calendar = Calendar.getInstance();
 		Date date = new Date();
 		int day = 365;
@@ -20,7 +20,7 @@ public class SeleniumDateMethods {
 		return dateFormat.format(calendar.getTime());
 	}
 
-	public static String dateFutureDay() {
+	public String dateFutureDay() {
 		Calendar calendar = Calendar.getInstance();
 		Date date = new Date();
 		int day = 1;
@@ -30,7 +30,7 @@ public class SeleniumDateMethods {
 		return dateFormat.format(calendar.getTime());
 	}
 
-	public static String dateCurrent() {
+	public String dateCurrent() {
 		Calendar calendar = Calendar.getInstance();
 		Date date = new Date();
 		int day = 0;
@@ -40,7 +40,7 @@ public class SeleniumDateMethods {
 		return dateFormat.format(calendar.getTime());
 	}
 
-	public static String datePastDay() {
+	public String datePastDay() {
 		Calendar calendar = Calendar.getInstance();
 		Date date = new Date();
 		int day = -1;
